@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>NOVA HUD</title>
+</head>
+<body>
+    <div id="hud" style="display:none;">
+        <!-- DINHEIRO (topo direita) -->
+        <div id="money-container">
+            <div class="money-row">
+                <span class="money-icon cash-icon">$</span>
+                <span id="cash-value">0</span>
+            </div>
+            <div class="money-row bank">
+                <span class="money-icon bank-icon">B</span>
+                <span id="bank-value">0</span>
+            </div>
+        </div>
+
+        <!-- JOB + ID -->
+        <div id="info-container">
+            <span id="server-id">ID: 0</span>
+            <span id="job-label">Desempregado</span>
+            <span id="duty-badge" style="display:none;">EM SERVIÇO</span><!-- i18n: updated via JS -->
+        </div>
+
+        <!-- BARRAS (baixo direita) -->
+        <div id="bars-container">
+            <div class="bar-item">
+                <div class="bar-ring" id="ring-health">
+                    <svg viewBox="0 0 36 36">
+                        <circle class="bar-bg" cx="18" cy="18" r="15.9"/>
+                        <circle class="bar-fill health-fill" cx="18" cy="18" r="15.9" id="fill-health"/>
+                    </svg>
+                    <span class="bar-icon">♥</span>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-ring" id="ring-armor">
+                    <svg viewBox="0 0 36 36">
+                        <circle class="bar-bg" cx="18" cy="18" r="15.9"/>
+                        <circle class="bar-fill armor-fill" cx="18" cy="18" r="15.9" id="fill-armor"/>
+                    </svg>
+                    <span class="bar-icon">🛡</span>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-ring" id="ring-hunger">
+                    <svg viewBox="0 0 36 36">
+                        <circle class="bar-bg" cx="18" cy="18" r="15.9"/>
+                        <circle class="bar-fill hunger-fill" cx="18" cy="18" r="15.9" id="fill-hunger"/>
+                    </svg>
+                    <span class="bar-icon">🍔</span>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-ring" id="ring-thirst">
+                    <svg viewBox="0 0 36 36">
+                        <circle class="bar-bg" cx="18" cy="18" r="15.9"/>
+                        <circle class="bar-fill thirst-fill" cx="18" cy="18" r="15.9" id="fill-thirst"/>
+                    </svg>
+                    <span class="bar-icon">💧</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VELOCÍMETRO (só em veículo) -->
+        <div id="speed-container" style="display:none;">
+            <span id="speed-value">0</span>
+            <span class="speed-unit">km/h</span>
+        </div>
+    </div>
+
+    <!-- PROGRESS BAR (fora do hud para funcionar independentemente) -->
+    <div id="progress-container" style="display:none;">
+        <div id="progress-label">A usar...</div>
+        <div id="progress-bar-bg">
+            <div id="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

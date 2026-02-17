@@ -1,0 +1,102 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; background: transparent; }
+
+#chat-container {
+    position: fixed;
+    bottom: 120px;
+    left: 20px;
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.5s ease;
+}
+
+#chat-container.faded {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#chat-messages {
+    max-height: 280px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+}
+
+#chat-messages::-webkit-scrollbar { display: none; }
+
+.chat-msg {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #e0e0e0;
+    background: rgba(0, 0, 0, 0.45);
+    word-wrap: break-word;
+    animation: msgIn 0.2s ease;
+}
+
+@keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-msg .msg-author {
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.chat-msg .msg-id {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-right: 4px;
+}
+
+.chat-msg.type-me {
+    background: rgba(192, 132, 252, 0.12);
+    font-style: italic;
+}
+
+.chat-msg.type-system {
+    background: rgba(132, 204, 22, 0.1);
+}
+
+.chat-msg.type-announce {
+    background: rgba(250, 204, 21, 0.12);
+    border-left: 3px solid #facc15;
+    padding-left: 10px;
+}
+
+.chat-msg.type-ooc {
+    background: rgba(148, 163, 184, 0.1);
+}
+
+/* INPUT */
+#chat-input-area {
+    margin-top: 4px;
+}
+
+#chat-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgb(18, 18, 24);
+    border: 1px solid rgba(132, 204, 22, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#chat-input:focus {
+    border-color: #84cc16;
+}
+
+#chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}

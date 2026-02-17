@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>NOVA Multichar</title>
+</head>
+<body>
+    <div id="app" style="display:none;">
+        <!-- TELA DE SELEÇÃO -->
+        <div id="select-screen">
+            <div class="header">
+                <h1>NOVA <span>Framework</span></h1>
+                <p id="i18n-subtitle">Seleciona o teu personagem</p>
+            </div>
+            <div id="char-list" class="char-grid"></div>
+        </div>
+
+        <!-- TELA DE CRIAÇÃO - INFO -->
+        <div id="create-screen" style="display:none;">
+            <div class="create-panel">
+                <h2 id="i18n-create-title">Criar Personagem</h2>
+                <div class="form-group">
+                    <label id="i18n-lbl-firstname">Nome</label>
+                    <input type="text" id="inp-firstname" placeholder="Nome" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label id="i18n-lbl-lastname">Apelido</label>
+                    <input type="text" id="inp-lastname" placeholder="Apelido" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label id="i18n-lbl-dob">Data de Nascimento</label>
+                    <input type="text" id="inp-dob" placeholder="DD/MM/AAAA" maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label id="i18n-lbl-nationality">Nacionalidade</label>
+                    <input type="text" id="inp-nationality" placeholder="Portuguesa" maxlength="30" value="Portuguesa">
+                </div>
+                <div class="form-group">
+                    <label id="i18n-lbl-gender">Género</label>
+                    <div class="gender-btns">
+                        <button class="gender-btn active" data-gender="0" id="i18n-male">Masculino</button>
+                        <button class="gender-btn" data-gender="1" id="i18n-female">Feminino</button>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="i18n-back-select">Voltar</button>
+                    <button class="btn btn-primary" id="i18n-go-appearance">Aparência →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA DE APARÊNCIA -->
+        <div id="appearance-screen" style="display:none;">
+            <div class="appearance-panel">
+                <h2 id="i18n-appearance-title">Aparência</h2>
+                <div class="tabs">
+                    <button class="tab active" data-tab="face" id="i18n-tab-face">Rosto</button>
+                    <button class="tab" data-tab="hair" id="i18n-tab-hair">Cabelo</button>
+                    <button class="tab" data-tab="clothes" id="i18n-tab-clothes">Roupa</button>
+                </div>
+
+                <div class="tab-content active" id="tab-face">
+                    <div class="slider-group">
+                        <label id="i18n-mother">Mãe</label>
+                        <input type="range" id="sl-mom" min="0" max="45" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-father">Pai</label>
+                        <input type="range" id="sl-dad" min="0" max="45" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-resemblance">Semelhança</label>
+                        <input type="range" id="sl-shapemix" min="0" max="100" value="50">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-skin-tone">Tom de Pele</label>
+                        <input type="range" id="sl-skinmix" min="0" max="100" value="50">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-eyebrows">Sobrancelhas</label>
+                        <input type="range" id="sl-eyebrows" min="0" max="33" value="0">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-hair">
+                    <div class="slider-group">
+                        <label id="i18n-hair">Cabelo</label>
+                        <input type="range" id="sl-hair" min="0" max="76" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-hair-color">Cor do Cabelo</label>
+                        <input type="range" id="sl-haircolor" min="0" max="63" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-beard">Barba</label>
+                        <input type="range" id="sl-beard" min="-1" max="28" value="-1">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-beard-color">Cor da Barba</label>
+                        <input type="range" id="sl-beardcolor" min="0" max="63" value="0">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-clothes">
+                    <div class="slider-group">
+                        <label id="i18n-shirt">Camisola</label>
+                        <input type="range" id="sl-torso" min="0" max="250" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-undershirt">Interior</label>
+                        <input type="range" id="sl-undershirt" min="0" max="180" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-pants">Calças</label>
+                        <input type="range" id="sl-legs" min="0" max="140" value="0">
+                    </div>
+                    <div class="slider-group">
+                        <label id="i18n-shoes">Sapatos</label>
+                        <input type="range" id="sl-shoes" min="0" max="100" value="0">
+                    </div>
+                </div>
+
+                <div class="appearance-actions">
+                    <button class="btn-rotate" id="btn-rotate-left">↺</button>
+                    <button class="btn btn-secondary" id="i18n-back-create">Voltar</button>
+                    <button class="btn btn-primary" id="i18n-finish">Criar</button>
+                    <button class="btn-rotate" id="btn-rotate-right">↻</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

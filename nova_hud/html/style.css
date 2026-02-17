@@ -1,0 +1,162 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; background: transparent; color: #fff; }
+
+#hud { position: fixed; inset: 0; pointer-events: none; }
+
+/* DINHEIRO */
+#money-container {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    text-align: right;
+}
+.money-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.money-row.bank { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 500; }
+.money-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+}
+.cash-icon { background: #84cc16; color: #0a0a0a; }
+.bank-icon { background: #84cc16; color: #0a0a0a; }
+
+/* INFO */
+#info-container {
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+#server-id {
+    background: rgba(255,255,255,0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+#job-label { color: rgba(255,255,255,0.6); }
+#duty-badge {
+    background: rgba(34,197,94,0.25);
+    color: #22c55e;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+/* BARRAS CIRCULARES */
+#bars-container {
+    position: absolute;
+    bottom: 24px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+.bar-item { position: relative; }
+.bar-ring {
+    width: 44px;
+    height: 44px;
+    position: relative;
+}
+.bar-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+.bar-bg {
+    fill: none;
+    stroke: rgba(255,255,255,0.08);
+    stroke-width: 3;
+}
+.bar-fill {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.4s ease;
+}
+.health-fill { stroke: #ef4444; }
+.armor-fill { stroke: #60a5fa; }
+.hunger-fill { stroke: #f59e0b; }
+.thirst-fill { stroke: #06b6d4; }
+
+.bar-icon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* VELOCÍMETRO */
+#speed-container {
+    position: absolute;
+    bottom: 80px;
+    right: 22px;
+    text-align: center;
+}
+#speed-value {
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+.speed-unit {
+    display: block;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    margin-top: -4px;
+}
+
+/* PROGRESS BAR */
+#progress-container {
+    position: fixed;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    text-align: center;
+    pointer-events: none;
+    z-index: 9999;
+    animation: progressFadeIn 0.2s ease;
+}
+@keyframes progressFadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+#progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    margin-bottom: 6px;
+}
+#progress-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+#progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #84cc16, #a3e635);
+    border-radius: 3px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(132, 204, 22, 0.5);
+}

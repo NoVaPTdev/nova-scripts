@@ -1,0 +1,167 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; background: transparent; color: #fff; }
+
+#bank {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+}
+
+.bank-panel {
+    background: rgb(18, 18, 24);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    width: 420px;
+    max-height: 85vh;
+    overflow: hidden;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* HEADER */
+.bank-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.bank-logo {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.bank-logo span { color: #84cc16; font-weight: 600; }
+.bank-user { flex: 1; text-align: right; font-size: 12px; color: rgba(255,255,255,0.5); }
+.close-btn {
+    background: none; border: none; color: rgba(255,255,255,0.4);
+    font-size: 22px; cursor: pointer; transition: color 0.2s;
+}
+.close-btn:hover { color: #fff; }
+
+/* SALDOS */
+.balance-cards { display: flex; gap: 10px; margin-bottom: 18px; }
+.balance-card {
+    flex: 1;
+    background: rgba(132,204,22,0.08);
+    border: 1px solid rgba(132,204,22,0.15);
+    border-radius: 10px;
+    padding: 14px;
+}
+.balance-card.cash {
+    background: rgba(34,197,94,0.08);
+    border-color: rgba(34,197,94,0.15);
+}
+.balance-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.balance-value { font-size: 22px; font-weight: 700; }
+.balance-card.cash .balance-value { color: #22c55e; }
+
+/* TABS */
+.bank-tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+.bank-tab {
+    flex: 1;
+    padding: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+.bank-tab.active { background: rgba(132,204,22,0.15); border-color: #84cc16; color: #fff; }
+.bank-tab:hover { color: #fff; }
+
+/* PANELS */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.action-group { }
+.action-group label { display: block; font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.input-row {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.input-prefix {
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.04);
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+}
+.input-row input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+.input-full {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 8px;
+}
+.input-full:focus, .input-row:focus-within { border-color: #84cc16; }
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.btn-primary { background: #84cc16; color: #0a0a0a; font-weight: 700; }
+.btn-primary:hover { background: #65a30d; }
+
+/* HISTÓRICO */
+.history-list { max-height: 300px; overflow-y: auto; }
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.history-item:last-child { border-bottom: none; }
+.history-info { flex: 1; }
+.history-type { font-size: 12px; font-weight: 600; }
+.history-desc { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.history-date { font-size: 10px; color: rgba(255,255,255,0.3); }
+.history-amount { font-weight: 700; font-size: 14px; }
+.history-amount.positive { color: #22c55e; }
+.history-amount.negative { color: #ef4444; }
+.history-empty { text-align: center; color: rgba(255,255,255,0.3); padding: 40px; font-size: 13px; }
+
+/* Scrollbar */
+.history-list::-webkit-scrollbar { width: 4px; }
+.history-list::-webkit-scrollbar-track { background: transparent; }
+.history-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* Remove spinners de inputs number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }

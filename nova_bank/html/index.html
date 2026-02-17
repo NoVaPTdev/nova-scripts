@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>NOVA Bank</title>
+</head>
+<body>
+    <div id="bank" style="display:none;">
+        <div class="bank-panel">
+            <!-- HEADER -->
+            <div class="bank-header">
+                <div class="bank-logo">NOVA <span>Bank</span></div>
+                <div class="bank-user" id="bank-user">Olá, Jogador</div>
+                <button class="close-btn" id="btn-close">&times;</button>
+            </div>
+
+            <!-- SALDOS -->
+            <div class="balance-cards">
+                <div class="balance-card">
+                    <div class="balance-label" id="i18n-bank-label">Conta Bancária</div>
+                    <div class="balance-value" id="val-bank">$0</div>
+                </div>
+                <div class="balance-card cash">
+                    <div class="balance-label" id="i18n-cash-label">Dinheiro</div>
+                    <div class="balance-value" id="val-cash">$0</div>
+                </div>
+            </div>
+
+            <!-- TABS -->
+            <div class="bank-tabs">
+                <button class="bank-tab active" data-tab="deposit" id="i18n-tab-deposit">Depositar</button>
+                <button class="bank-tab" data-tab="withdraw" id="i18n-tab-withdraw">Levantar</button>
+                <button class="bank-tab" data-tab="transfer" id="i18n-tab-transfer">Transferir</button>
+                <button class="bank-tab" data-tab="history" id="i18n-tab-history">Histórico</button>
+            </div>
+
+            <!-- DEPOSIT -->
+            <div class="tab-panel active" id="panel-deposit">
+                <div class="action-group">
+                    <label id="i18n-deposit-label">Valor a depositar</label>
+                    <div class="input-row">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="inp-deposit" placeholder="0" min="1">
+                    </div>
+                    <button class="btn btn-primary" id="i18n-btn-deposit">Depositar</button>
+                </div>
+            </div>
+
+            <!-- WITHDRAW -->
+            <div class="tab-panel" id="panel-withdraw">
+                <div class="action-group">
+                    <label id="i18n-withdraw-label">Valor a levantar</label>
+                    <div class="input-row">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="inp-withdraw" placeholder="0" min="1">
+                    </div>
+                    <button class="btn btn-primary" id="i18n-btn-withdraw">Levantar</button>
+                </div>
+            </div>
+
+            <!-- TRANSFER -->
+            <div class="tab-panel" id="panel-transfer">
+                <div class="action-group">
+                    <label id="i18n-player-id-label">ID do Jogador</label>
+                    <input type="number" id="inp-target" placeholder="Server ID" min="1" class="input-full">
+                    <label id="i18n-amount-label" style="margin-top:10px">Valor</label>
+                    <div class="input-row">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="inp-transfer-amount" placeholder="0" min="1">
+                    </div>
+                    <button class="btn btn-primary" id="i18n-btn-transfer">Transferir</button>
+                </div>
+            </div>
+
+            <!-- HISTORY -->
+            <div class="tab-panel" id="panel-history">
+                <div class="history-list" id="history-list">
+                    <div class="history-empty" id="i18n-no-tx">Sem transações</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
