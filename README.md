@@ -1,89 +1,87 @@
-# NOVA Framework - Launch Scripts Overview
+<div align="center">
 
-The NOVA Framework includes a set of FiveM scripts that provide core roleplay functionality. This document provides an overview of all launch scripts, their purpose, installation order, and dependencies.
+# NOVA Framework - Launch Scripts
 
-## Scripts Summary
+**The essential scripts that come free and open-source with the NOVA Framework.**
 
-| Script | Description | Dependencies |
-|--------|-------------|--------------|
-| **nova_core** | Core framework - player management, jobs, callbacks, database | oxmysql |
-| **nova_bridge** | Bridge layer for compatibility | nova_core |
-| **nova_notify** | Toast notification system | — |
-| **nova_multichar** | Character creation, selection, and appearance | nova_core |
-| **nova_hud** | Health, armor, hunger, thirst, job display, progress bar | nova_core |
-| **nova_chat** | Styled chat with command system | nova_core |
-| **nova_inventory** | Drag & drop inventory with usable items | nova_core |
-| **nova_bank** | Banking system with deposits, withdrawals, transfers | nova_core |
-| **nova_garage** | Vehicle storage, retrieval, and impound | nova_core |
-| **nova_shops** | Clothing, barber, tattoo, and general stores | nova_core, nova_inventory |
+10 scripts ready to use — everything you need to launch your FiveM RP server.
 
-## Installation Order
+[![License](https://img.shields.io/badge/license-GPL--3.0-green)](LICENSE)
+[![FiveM](https://img.shields.io/badge/FiveM-compatible-blue)](https://fivem.net)
+[![Docs](https://img.shields.io/badge/docs-GitBook-orange)](https://novaframeworkdoc.gitbook.io/novaframework/)
 
-Scripts must be loaded in the correct order to ensure dependencies are available. The recommended load order in your `server.cfg`:
+</div>
 
-```
-# 1. Dependencies first
+---
+
+## Included Scripts
+
+| Script | Description |
+|--------|-------------|
+| **nova_bank** | Banking system — deposits, withdrawals, transfers |
+| **nova_chat** | Styled chat with command system |
+| **nova_garage** | Vehicle storage, retrieval, and impound |
+| **nova_hud** | Health, armor, hunger, thirst, job display |
+| **nova_inventory** | Drag & drop inventory with usable items |
+| **nova_multichar** | Character creation, selection, and appearance |
+| **nova_notify** | Toast notification system |
+| **nova_shops** | Clothing, barber, tattoo, and general stores |
+
+## Quick Start
+
+**Requirements:** [nova_core](https://github.com/NoVaPTdev/nova-core), [oxmysql](https://github.com/overextended/oxmysql), MySQL/MariaDB
+
+1. Place all scripts inside `resources/[nova]/`
+2. Import SQL schemas:
+   - `nova_core/sql/nova.sql`
+   - `nova_bank/sql/bank.sql`
+3. Add to `server.cfg`:
+```cfg
 ensure oxmysql
-
-# 2. Core framework (required by all other scripts)
 ensure nova_core
-
-# 3. Bridge (if using)
 ensure nova_bridge
-
-# 4. UI/Utility scripts (no dependencies on other NOVA scripts)
 ensure nova_notify
-
-# 5. Character & Login
 ensure nova_multichar
-
-# 6. HUD & Chat (player-facing UI)
 ensure nova_hud
 ensure nova_chat
-
-# 7. Inventory (required by shops)
 ensure nova_inventory
-
-# 8. Economy & Vehicles
 ensure nova_bank
 ensure nova_garage
-
-# 9. Shops (depends on inventory for item purchases)
 ensure nova_shops
 ```
 
-When using the `[frameworklancamento]` resource folder, ensure the entire folder:
+## Load Order
 
 ```
-ensure [frameworklancamento]
-```
-
-The resources within the folder are typically loaded in alphabetical order. Ensure `nova_core` starts before other nova_* scripts by naming or explicit ordering in the resource manifest.
-
-## Dependency Graph
-
-```
-nova_core
-    ├── nova_notify (optional, used for notifications)
+oxmysql
+└── nova_core
+    ├── nova_bridge
+    ├── nova_notify
     ├── nova_multichar
     ├── nova_hud
     ├── nova_chat
     ├── nova_inventory
-    │   └── nova_shops (for item purchases)
+    │   └── nova_shops
     ├── nova_bank
     └── nova_garage
 ```
 
-## Database Requirements
+## Documentation
 
-Before running the framework, execute the following SQL files in order:
+Full documentation for all scripts, exports, events, and configuration:
 
-1. **nova_core/sql/nova.sql** - Core tables (`nova_users`, `nova_characters`, `nova_vehicles`, `nova_jobs`, etc.)
-2. **nova_bank/sql/bank.sql** - Bank transactions table (`nova_transactions`)
+### **[Read the Docs](https://novaframeworkdoc.gitbook.io/novaframework/)**
 
-## Notes
+## License
 
-- All NOVA scripts require **Lua 5.4** (`lua54 'yes'` in fxmanifest).
-- The framework uses **oxmysql** for database operations.
-- **nova_notify** is used throughout the framework for user feedback; ensure it loads early.
-- **nova_inventory** must load before **nova_shops** so item purchases work correctly.
+This project is licensed under the GPL-3.0 License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**NOVA Framework** — Made with care for the FiveM community.
+
+[Documentation](https://novaframeworkdoc.gitbook.io/novaframework/) · [Discord](https://discord.gg/dxYfwqYRD) · [GitHub](https://github.com/NoVaPTdev)
+
+</div>
